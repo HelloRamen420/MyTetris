@@ -69,9 +69,13 @@ public class Tetris extends Application {
         Random rm = new Random();
         Boolean roopNextMinoAdd = false;
         int keep;
+        int count = 0;
         for (int i = 0; i < 5; i++) {
             Boolean[] minoBool = new Boolean[7];
-            while (roopNextMinoAdd) {
+            for (int k = 0; k < 7; k++) {
+                minoBool[k] = false;
+            }
+            while (!roopNextMinoAdd) {
                 keep = rm.nextInt(7) + 1;
 
                 if (!minoBool[keep - 1]) {
@@ -80,11 +84,14 @@ public class Tetris extends Application {
                 }
 
                 for (int j = 0; j < 7; j++) {
-                    if (!minoBool[j]) {
-                        continue;
+                    if (minoBool[j]) {
+                        count++;
                     }
                 }
-                roopNextMinoAdd = true;
+                if (count == 7) {
+                    count = 0;
+                    break;
+                }
             }
         }
     }

@@ -34,8 +34,31 @@ public class Test extends Application {
 
     public static void main(String[] args) {
         Random rm = new Random();
-        for (int i = 0; i < 30; i++) {
-            System.out.println(rm.nextInt(7) + 1);
+        Boolean[] minoBool = new Boolean[7];
+        for (int i = 0; i < 7; i++) {
+            minoBool[i] = false;
+        }
+        Boolean roopNextMinoAdd = false;
+        int keep, count;
+        count = 0;
+        System.out.println(minoBool[2]);
+        while (!roopNextMinoAdd) {
+            keep = rm.nextInt(7) + 1;
+
+            if (!minoBool[keep - 1]) {
+                System.out.println(keep);
+                minoBool[keep - 1] = true;
+            }
+
+            for (int j = 0; j < 7; j++) {
+                if (minoBool[j]) {
+                    count++;
+                }
+            }
+            if (count == 7) {
+                count = 0;
+                break;
+            }
         }
     }
 }
